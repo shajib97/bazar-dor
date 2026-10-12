@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import PriceTicker from "./PriceTicker";
+import { Toaster } from "react-hot-toast";
 
 interface Category {
   id: string;
@@ -43,6 +44,7 @@ export default function Navbar({ date }: { date: string }) {
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white">
+      <Toaster position="top-center" />
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3">
         <Link href="/" className="flex items-center gap-2">
           <Image
