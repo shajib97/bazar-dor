@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import PriceTicker from "./PriceTicker";
 
 interface Category {
   id: string;
@@ -106,6 +107,7 @@ export default function Navbar({ date }: { date: string }) {
           )}
         </div>
       </nav>
+      <PriceTicker />
     </header>
   );
 }
