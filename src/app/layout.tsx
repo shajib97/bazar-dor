@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Hind_Siliguri } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const hindSiliguri = Hind_Siliguri({
   subsets: ["bengali", "latin"],
@@ -26,11 +27,17 @@ export default function RootLayout({
     year: "numeric",
     timeZone: "Asia/Dhaka",
   });
+
   return (
     <html lang="bn" data-theme="light">
-      <body className={`${hindSiliguri.className} antialiased`}>
+      <body
+        className={`${hindSiliguri.className} flex min-h-screen flex-col antialiased`}
+      >
         <Navbar date={date} />
-        {children}
+
+        <div className="flex-1">{children}</div>
+
+        <Footer />
       </body>
     </html>
   );
