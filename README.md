@@ -5,8 +5,8 @@ comparing prices across markets, and tracking price increases and decreases.
 
 ## 🔗 Project Links
 
-- Live Website: ADD_YOUR_LIVE_LINK
-- GitHub Repository: ADD_YOUR_REPOSITORY_LINK
+- Live Website: https://bazar-dor-tau-inky.vercel.app/
+- GitHub Repository: https://github.com/shajib97/bazar-dor.git
 
 ## 🛠️ Technologies Used
 
