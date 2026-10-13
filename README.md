@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 বাজার দর — Bazar Dor
 
-## Getting Started
+Bazar Dor is a responsive website for viewing everyday product prices,
+comparing prices across markets, and tracking price increases and decreases.
 
-First, run the development server:
+## 🔗 Project Links
 
-```bash
+- Live Website: ADD_YOUR_LIVE_LINK
+- GitHub Repository: ADD_YOUR_REPOSITORY_LINK
+
+## 🛠️ Technologies Used
+
+- Next.js App Router
+- TypeScript
+- Tailwind CSS
+- DaisyUI
+- BetterAuth
+- MongoDB Atlas
+- React Hot Toast
+- React Fast Marquee
+- React Icons
+
+## ✨ Key Features
+
+1. Product prices displayed with Bengali numerals and price-change badges.
+2. Category pages with sorting by price from low to high or high to low.
+3. Homepage sections showing the top six price increases and decreases.
+4. Continuously scrolling product-price ticker.
+5. Protected product details with market-specific prices and price summaries.
+6. Email/password, Google, and GitHub authentication.
+7. Protected profile page with a separate form for updating the user's name.
+8. Skeleton loading states, toast notifications, and a friendly 404 page.
+9. Responsive layouts for mobile, tablet, and desktop.
+
+## 📊 Price Calculations
+
+- Minimum price: the lowest minimum price across the listed markets.
+- Maximum price: the highest maximum price across the listed markets.
+- Average price: the average of each market's minimum/maximum midpoint.
+
+## 🚀 Run Locally
+
+Install dependencies:
+
+npm install
+
+Create a .env file in the project root with your own values:
+
+BETTER_AUTH_URL=http://localhost:3000
+BETTER_AUTH_SECRET=your_generated_secret
+MONGODB_URI=your_mongodb_connection_string
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+GITHUB_CLIENT_ID=your_github_client_id
+GITHUB_CLIENT_SECRET=your_github_client_secret
+
+Start the development server:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔐 Local OAuth Callback URLs
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Google:
+http://localhost:3000/api/auth/callback/google
 
-## Learn More
+GitHub:
+http://localhost:3000/api/auth/callback/github
 
-To learn more about Next.js, take a look at the following resources:
+For an existing password account, sign in first to link an additional
+social login method.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🏗️ Production Commands
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Build the project:
 
-## Deploy on Vercel
+npm run build
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Start the production server:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+npm run start
+
+## 📡 API
+
+Base URL:
+https://openapi.programming-hero.com/api/bazardor
+
+Endpoints:
+
+- /categories
+- /categories/chal
+- /products
+- /products?category=chal
+- /products/1
