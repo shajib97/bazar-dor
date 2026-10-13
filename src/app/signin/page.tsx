@@ -5,16 +5,22 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState, type FormEvent } from "react";
 import toast from "react-hot-toast";
 import { authClient } from "../../lib/auth-client";
+import SocialLoginButtons from "../../components/SocialLoginButtons";
 
 export default function SignInPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+    const reason = params.get("reason");
 
-    if (params.get("reason") === "login-required") {
-      toast.error("বিস্তারিত দাম দেখতে আগে সাইন ইন করুন।", {
+    if (reason === "login-required") {
+      toast.error("এই পেজটি দেখতে আগে সাইন ইন করুন।", {
         id: "login-required",
+      });
+    } else if (reason === "social-error") {
+      toast.error("সোশ্যাল সাইন ইন করা যায়নি। আবার চেষ্টা করুন।", {
+        id: "social-login-error",
       });
     }
   }, []);
@@ -121,6 +127,8 @@ export default function SignInPage() {
             "সাইন ইন"
           )}
         </button>
+
+        <SocialLoginButtons disabled={loading} />
 
         <p className="text-center text-sm text-gray-500">
           অ্যাকাউন্ট নেই?{" "}

@@ -18,6 +18,13 @@ export const auth = betterAuth({
     autoSignIn: false,
     requireEmailVerification: false,
   },
+  account: {
+  accountLinking: {
+    enabled: true,
+    disableImplicitLinking: false,
+    trustedProviders: ["google", "github"],
+  },
+},
 
   socialProviders: {
   github: {

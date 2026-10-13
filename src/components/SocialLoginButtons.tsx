@@ -11,20 +11,34 @@ export default function SocialLoginButtons({
 }: {
   disabled?: boolean;
 }) {
+  const { data: session, isPending } = authClient.useSession();
+
   const [loading, setLoading] = useState<"google" | "github" | null>(null);
 
   const handleSocialLogin = async (provider: "google" | "github") => {
     setLoading(provider);
 
     try {
-      const { error } = await authClient.signIn.social({
-        provider,
-        callbackURL: "/?social=success",
-        errorCallbackURL: "/signin?reason=social-error",
-      });
+      if (session) {
+        const { error } = await authClient.linkSocial({
+          provider,
+          callbackURL: "/profile",
+          errorCallbackURL: "/signin?reason=social-error",
+        });
 
-      if (error) {
-        toast.error(error.message || "সাইন ইন করা যায়নি।");
+        if (error) {
+          toast.error(error.message || "অ্যাকাউন্ট যুক্ত করা যায়নি।");
+        }
+      } else {
+        const { error } = await authClient.signIn.social({
+          provider,
+          callbackURL: "/?social=success",
+          errorCallbackURL: "/signin?reason=social-error",
+        });
+
+        if (error) {
+          toast.error(error.message || "সাইন ইন করা যায়নি।");
+        }
       }
     } catch {
       toast.error("সমস্যা হয়েছে। আবার চেষ্টা করুন।");
@@ -41,7 +55,7 @@ export default function SocialLoginButtons({
         <button
           type="button"
           onClick={() => handleSocialLogin("google")}
-          disabled={disabled || loading !== null}
+          disabled={disabled || isPending || loading !== null}
           className="btn btn-outline h-auto min-h-10 gap-2 py-2 text-sm"
         >
           {loading === "google" ? (
@@ -50,13 +64,15 @@ export default function SocialLoginButtons({
             <FcGoogle className="shrink-0 text-lg" />
           )}
 
-          <span>Google দিয়ে চালিয়ে যান</span>
+          <span>
+            {session ? "Google যুক্ত করুন" : "Google দিয়ে চালিয়ে যান"}
+          </span>
         </button>
 
         <button
           type="button"
           onClick={() => handleSocialLogin("github")}
-          disabled={disabled || loading !== null}
+          disabled={disabled || isPending || loading !== null}
           className="btn btn-outline h-auto min-h-10 gap-2 py-2 text-sm"
         >
           {loading === "github" ? (
@@ -65,7 +81,9 @@ export default function SocialLoginButtons({
             <FaGithub className="shrink-0 text-lg" />
           )}
 
-          <span>GitHub দিয়ে চালিয়ে যান</span>
+          <span>
+            {session ? "GitHub যুক্ত করুন" : "GitHub দিয়ে চালিয়ে যান"}
+          </span>
         </button>
       </div>
     </div>
