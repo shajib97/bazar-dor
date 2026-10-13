@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import toast from "react-hot-toast";
 import { authClient } from "../../lib/auth-client";
+import SocialLoginButtons from "../../components/SocialLoginButtons";
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -152,6 +153,7 @@ export default function SignUpPage() {
             "অ্যাকাউন্ট তৈরি করুন"
           )}
         </button>
+        <SocialLoginButtons disabled={loading} />
 
         <p className="text-center text-sm text-gray-500">
           অ্যাকাউন্ট আছে?{" "}
